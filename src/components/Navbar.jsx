@@ -1,11 +1,23 @@
 import { assets } from '../assets/assets';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 const Navbar = () => {
   const [showMobilemenu, setShowMobileMenu] = useState(false);
+     
+   useEffect(()=> {
+    if (showMobilemenu) {
+        document.body.style.overflow = 'hidden'
+    } else {
+        document.body.style.overflow = 'auto'
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  },[showMobilemenu])
+
 
   return (
-    <>
+  
     <div className="absolute top-0 left-0 w-full z-10">
       <div className="container mx-auto flex justify-between items-center px-6 py-4 md:px-20 lg:px-32 bg-transparent">
         <img src={assets.logo} alt="Logo" className="h-10" />
@@ -37,7 +49,7 @@ const Navbar = () => {
         </ul>
       </div>
     </div>
-    </>
+    
   );
 };
 
