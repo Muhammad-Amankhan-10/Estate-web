@@ -24,9 +24,9 @@ const Navbar = () => {
 
         <ul className="hidden md:flex gap-7 text-white">
           <li><a href="#Header" className="cursor-pointer hover:text-gray-400 transition">Home</a></li>
-          <li><a href="#Header" className="cursor-pointer hover:text-gray-400 transition">About</a></li>
-          <li><a href="#Header" className="cursor-pointer hover:text-gray-400 transition">Project</a></li>
-          <li><a href="#Header" className="cursor-pointer hover:text-gray-400 transition">Testimonials</a></li>
+          <li><a href="#About" className="cursor-pointer hover:text-gray-400 transition">About</a></li>
+          <li><a href="#Project " className="cursor-pointer hover:text-gray-400 transition">Project</a></li>
+          <li><a href="#Testimonials" className="cursor-pointer hover:text-gray-400 transition">Testimonials</a></li>
         </ul>
 
         <button className="hidden md:block bg-white text-black px-8 py-2 rounded-full cursor-pointer hover:bg-gray-400 transition">
