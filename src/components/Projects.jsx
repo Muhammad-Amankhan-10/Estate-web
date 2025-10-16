@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets, projectsData } from '../assets/assets'
 
 
@@ -7,14 +7,27 @@ import { assets, projectsData } from '../assets/assets'
    const [currentIndex, setCurrentIndex] = useState(0);
    const [cardToShow, setCardToShow] = useState(1);
 
+   useEffect(() => {
+    const updateCardsToShow = () => {
+      if (window.innerWidth >= 1024) {
+       setCardToShow(projectsData.length); // 👈 correct spelling
+      } else {
+        setCardToShow(1);
+     }
+    };
+
+    updateCardsToShow();
+
+     window.addEventListener('resize', updateCardsToShow);
+     return () => window.removeEventListener('resize', updateCardsToShow);
+    }, []);
+
    const nextProject = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
    }
 
       const prevProject = () => {
-        setCurrentIndex((prevIndex) => prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
-        );
-        
+        setCurrentIndex((prevIndex) => prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1);
    }
     
     return (
@@ -34,7 +47,7 @@ import { assets, projectsData } from '../assets/assets'
         </div>
 
         <div className='overflow-hidden'>
-          <div className='flex gap-8 transition transform duration-500 ease-in-out'>
+          <div className='flex gap-8 transition transform duration-500 ease-in-out' style={{ transform: `translateX(-${currentIndex * (100 / cardToShow)}%)` }}>
             {projectsData.map((Project, index)=>(
               <div key={index} className='relative flex-shrink-0 w-full sm:w-1/4'>
                  <img src={Project.image} alt={Project.title} className='w-full h-auto mb-14'/>
